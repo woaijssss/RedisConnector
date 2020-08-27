@@ -8,7 +8,6 @@
 #include <iostream>
 #include <string>
 #include "redis.h"
-#include "logger/qklogger.h"
 #include "config.h"
 
 using namespace std;
@@ -42,10 +41,10 @@ Bool RedisMg::connect()
         _connect = redisConnect(_ip.c_str(), atoi(cdb.get("redis_port").c_str()));
         if (!_connect || _connect->err)
         {
-                QkWarn("connect redis failed: " + string(_connect->errstr));
+                cout << "connect redis failed: " + string(_connect->errstr) << endl;
                 return FALSE;
         }
-        QkInfo("connect to redis success...");
+        cout << "connect to redis success..." << endl;
         return TRUE;
 }
 
